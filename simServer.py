@@ -54,6 +54,11 @@ if __name__ == '__main__':
             cmd = data.split()
 
             if len(cmd) == 1:
+                if cmd[0].lower() == "info":
+                    conn.send("[simServer]\n")
+                    conn.send("hostname : %s \n" % socket.gethostname())
+                    conn.send("ip       : %s \n" % socket.gethostbyname(socket.gethostname()))
+
                 if cmd[0].lower() == "state":
                     # workaround to check if lock is set
                     if lock.acquire(False):
